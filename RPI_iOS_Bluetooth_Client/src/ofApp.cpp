@@ -43,7 +43,13 @@ void ofApp::update(){
     
     if(!bFoundPort) return;
     
-    ofLogNotice("bytesRemaining = " + ofToString(bytesRemaining));
+    // flush serial buffer up to latest packet if we have a queue of several packets //
+    int available = serial.available();
+    if( available > PACKET_SIZE && available % PACKET_SIZE == 0) {
+        for(size_t i = 0; i < available - PACKET_SIZE; i++) {
+            serial.readByte();
+        }
+    }
     
     if(bytesRemaining > 0) {
         if( serial.available() > 0 ) {
