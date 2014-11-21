@@ -17,8 +17,8 @@ void ofApp::setup(){
     
     string port = "";
     bFoundPort = false;
-    for(auto &d : deviceList) {
-        string n = d.getDevicePath();
+    for(size_t i = 0; i < deviceList.size(); i++) {
+        string n = deviceList[i].getDevicePath();
         ofLogNotice("path: " + n);
         if(std::string::npos != n.find(prefixMatch)) {
             port = n;
