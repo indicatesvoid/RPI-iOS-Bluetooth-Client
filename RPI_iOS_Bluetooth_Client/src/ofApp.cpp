@@ -8,7 +8,7 @@ void ofApp::setup(){
     ofBackground(ofColor::black);
     
 #if defined(TARGET_LINUX)
-    string prefixMatch = "/dev/tty.ACM"; // Raspi UART
+    string prefixMatch = "/dev/tty.AMA"; // Raspi UART
 #else
     string prefixMatch = "/dev/tty.usbserial"; // Serial comm cable
 #endif
@@ -78,6 +78,7 @@ void ofApp::update(){
     
     else if(bytesRemaining <= 0) {
         // full packet received, set circle position //
+        // TO-DO: opcode parsing if performing more than one operation (move) //
         uint8_t x = (uint8_t)bytes[1];
         uint8_t y = (uint8_t)bytes[2];
         // re-scale 8-bit uint (0-255) to window size //
