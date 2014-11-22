@@ -8,7 +8,7 @@ void ofApp::setup(){
     ofBackground(ofColor::black);
     
 #if defined(TARGET_LINUX)
-    string prefixMatch = "/dev/tty.AMA"; // Raspi UART
+    string prefixMatch = "/dev/ttyAMA"; // Raspi UART
 #else
     string prefixMatch = "/dev/tty.usbserial"; // Serial comm cable
 #endif
